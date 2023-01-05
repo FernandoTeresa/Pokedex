@@ -7,7 +7,7 @@ import { SharedModule } from "../shared/shared.module";
 
 //pages
 import { HomeComponent } from './home/home.component';
-import { DetailsComponent } from './details/details.component';
+import { DetailsComponent } from './details/details/details.component';
 
 
 

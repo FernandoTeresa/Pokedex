@@ -1,31 +1,45 @@
 
 <poke-search (eventEmiter)="search($event)"></poke-search>
 
-<section class="list">
-    <ng-template ngFor let-pokemon [ngForOf]="this.pokemons">
 
-        <a [routerLink]="['details', pokemon.id]" class="pokemon">
-            <section class="pokemon__status">
-                <h2>
-                    {{pokemon.name}}
-                </h2>
 
-                <ul >
-                    <li *ngFor="let details of pokemon.types">
-                        {{details.type.name}}
-                    </li>
-                
+    <section class="list">
+        <ng-template [ngIf]="!this.existSearch">
+            <ng-template ngFor let-pokemon [ngForOf]="this.pokemons">
 
-                </ul>
+                <a [routerLink]="['details', pokemon.id]" class="pokemon">
+                    <section class="pokemon__status">
+                        <h2>
+                            {{pokemon.name}}
+                        </h2>
 
-            </section>
+                        <ul >
+                            <li *ngFor="let details of pokemon.types">
+                                {{details.type.name}}
+                            </li>
+                        
 
-            <section class="pokemon__image">
-                <img [src]="pokemon.sprites.other.dream_world.front_default" [alt]="pokemon.name">
+                        </ul>
 
-            </section>
+                    </section>
 
-        </a>
+                    <section class="pokemon__image">
+                        <img [src]="pokemon.sprites.other.dream_world.front_default" [alt]="pokemon.name">
 
-    </ng-template>
-</section>
+                    </section>
+
+                </a>
+
+            </ng-template>
+        </ng-template>
+
+        <ng-template [ngIf]="this.existSearch">
+
+            <app-component></app-component>
+        </ng-template>
+        
+    </section>
+
+
+
+

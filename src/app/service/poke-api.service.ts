@@ -9,24 +9,44 @@ export class PokeApiService {
 
   private url: string = 'https://pokeapi.co/api/v2/pokemon/?offset=0&limit=100'
 
-  constructor(private http:HttpClient) { }
+  private allPokemons: string = 'https://pokeapi.co/api/v2/pokemon/?offset=0&limit=1154'
 
-  public pokemons:any[]=[];
+  constructor(private http: HttpClient) { }
 
-  requestPokemons(){
+  public pokemons: any[] = [];
+
+  public allNamesPokemons: any[] = [];
+
+  requestPokemons() {
+
     return this.http.get(this.url);
   }
 
-  setPokemons(value:any){
-      this.pokemons.push(value);
+  setPokemons(value: any) {
+    this.pokemons.push(value);
   }
 
-  getPokemons(){
-    return this.pokemons;
-  }
+  requestDetails(id: any = null, urlApi: string = '') {
 
-  requestDetails(url:string){
+    let url = '';
+
+    if (id) {
+      url = 'https://pokeapi.co/api/v2/pokemon/' + id + '/'
+    }
+
+    if (urlApi != '') {
+      url = urlApi
+    }
+
     return this.http.get(url);
+  }
+
+  requestAllPokemons() {
+    return this.http.get(this.allPokemons);
+  }
+
+  setAllPokemons(value: any[]) {
+    this.allNamesPokemons=value;
   }
 
 }
